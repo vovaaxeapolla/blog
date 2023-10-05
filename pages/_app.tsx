@@ -35,16 +35,14 @@ export default function App({ Component, pageProps, router }: AppProps) {
             <AnimatePresence
                 initial={false}
                 mode='wait'
+                onExitComplete={() => window.scrollTo(0, 0)}
             >
                 <motion.div
                     key={router.asPath}
                     transition={{ duration: .4 }}
                     className="wrapper"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
                 >
-                    <Component {...pageProps} />
+                    <Component {...pageProps} key={router.pathname} />
                     <TilesTransition TilesNumber={20} />
                 </motion.div>
             </AnimatePresence>
