@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useEffect, createContext, useState } from "react";
 import Header from "../components/Header";
 import '../styles/global.sass';
-import { AnimatePresence, motion, usePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import TilesTransition from "../components/TilesTransition";
 import Background from "../components/Background";
 
@@ -15,7 +15,6 @@ export const ThemeContext = createContext<ThemeContext>(
 export default function App({ Component, pageProps, router }: AppProps) {
 
     const [theme, setTheme] = useState<Theme>('light');
-    const [isPresent, safeToRemove] = usePresence();
 
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
@@ -37,17 +36,17 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 initial={false}
                 mode='wait'
             >
-                {isPresent && (
-                    <motion.div
-                        key={router.asPath}
-                        transition={{ duration: .4 }}
-                        className="wrapper"
-                        onComplete={safeToRemove}
-                    >
-                        <Component {...pageProps} />
-                        <TilesTransition TilesNumber={20} />
-                    </motion.div>
-                )}
+                <motion.div
+                    key={router.asPath}
+                    transition={{ duration: .4 }}
+                    className="wrapper"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <Component {...pageProps} />
+                    <TilesTransition TilesNumber={20} />
+                </motion.div>
             </AnimatePresence>
             <Background />
         </ThemeContext.Provider>
