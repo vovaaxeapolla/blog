@@ -1,0 +1,39 @@
+.about
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    width: 100%
+    position: relative
+    padding: var(--page-padding)
+    position: relative
+    height: calc(var(--vh, 1vh) * 100)
+
+    .container
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+    .right, .left
+        display: flex
+        flex-direction: column
+        max-width: 40%
+        font: 1rem arial
+
+    .left
+        h1
+            font-size: 4rem
+            color: var(--white-text)
+        p
+            color: grey
+
+    .right
+        p
+            font-size: 1.25rem
+            color: var(--white-text)
+            margin-bottom: 1.25rem
+
+    .top, .bottom
+        width: 100%
+        height: 10vmin
+        position: absolute
+        background: var(--main-color)

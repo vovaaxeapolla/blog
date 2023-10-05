@@ -1,0 +1,27 @@
+.skills
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+
+    .card
+        color: var(--main-color)
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        font-size: 5vmin
+        border-radius: 2rem
+        position: relative
+
+        @for $i from 2 through 9
+            &:nth-child(#{$i})
+                margin-left: calc( 1ch * ($i - 2) * 3)
+                &::before
+                    content: ''
+                    position: absolute
+                    width: 1px
+                    height: calc( 100% * (9 - $i ) )
+                    left: 0
+                    top: 100%
+                    background: grey

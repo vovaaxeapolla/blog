@@ -1,0 +1,38 @@
+.portfolio
+
+.home
+    width: 100%
+    height: calc( var(--vh, 1vh) * 100 )
+    position: relative
+    padding-top: var(--header-height)
+
+.content
+    display: inline-block
+    position: relative
+    z-index: 3
+    font-size: 10vmin
+    top: var(--page-padding)
+    left: var(--page-padding)
+    color: var(--main-color)
+
+    h1
+        display: flex
+        justify-content: flex-start
+        align-items: center
+
+    .blinker
+        display: inline-block
+        height: 22vmin
+        width: .25rem
+        background: var(--main-color)
+        animation: blink 1s steps(1,end) infinite
+
+    h3
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        font-size: 5vmin
+
+@keyframes blink
+    50%
+        opacity: 0
