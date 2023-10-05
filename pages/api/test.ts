@@ -1,12 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { sql } from "@vercel/postgres";
+import { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = {
     message: string
 }
 
-export default function handler(
+export default async function test(
     req: NextApiRequest,
     res: NextApiResponse<ResponseData>
 ) {
-    res.status(200).json({ message: 'Hello from Next.js!' })
+    const { rows } = await sql`SELECT * FROM posts`;
+    console.log(rows);
+    res.status(200).json({ message: JSON.stringify(rows) })
 }
