@@ -12,6 +12,12 @@ export default function Blog() {
                 <meta name="keywords" content="Blog, Portfolio, Home"></meta>
             </Head>
             <Post></Post>
+            <Post></Post>
+            <Post></Post>
+            <Post></Post>
+            <Post></Post>
+            <Post></Post>
+            <Post></Post>
         </div>
     )
 }
