@@ -17,10 +17,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
     const [theme, setTheme] = useState<Theme>('light');
     const [isPresent, safeToRemove] = usePresence();
 
-    useEffect(() => {
-        !isPresent && setTimeout(safeToRemove, 1000)
-    }, [isPresent])
-
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
     };
@@ -46,6 +42,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                         key={router.asPath}
                         transition={{ duration: .4 }}
                         className="wrapper"
+                        onComplete={safeToRemove}
                     >
                         <Component {...pageProps} />
                         <TilesTransition TilesNumber={20} />
