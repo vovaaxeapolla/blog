@@ -1,20 +1,19 @@
-import styles from '../styles/About.module.sass';
 import FadeInWhenVisible from './FadeInVisible';
 import Title from './Title';
 
 export default function About() {
 
     return (
-        <section className={styles.about}>
+        <section className='about'>
             <FadeInWhenVisible >
                 <Title text='About me' />
             </FadeInWhenVisible>
-            <div className={styles.container}>
-                <FadeInWhenVisible className={styles.left} delay={.2}>
+            <div className='about__container'>
+                <FadeInWhenVisible className='about__left' delay={.2}>
                     <h1>Hi, I`m Vladimir Fadeev <br />Web developer</h1>
                     <p>Front End Developer / JavaScript Fan / Fullstack enjoyer</p>
                 </FadeInWhenVisible>
-                <FadeInWhenVisible className={styles.right} delay={.4}>
+                <FadeInWhenVisible className='about__right' delay={.4}>
                     <p>Professionally connected with the web development industry.</p>
                     <p>Problem solver, well-organised person, loyal employee with high attention to detail. <br />
                         Fan of Boxing, outdoor activities, video games, and coding of course.</p>

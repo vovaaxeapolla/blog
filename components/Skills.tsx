@@ -47,16 +47,16 @@ const skills = [
 
 export default function Skills() {
     return (
-        <section className={styles.skills}>
+        <section className='skills'>
             <h2>A PROBLEM IS A CHANCE FOR YOU TO DO YOUR BEST.</h2>
             <Title text='Skills & Experince' />
             <p>The main area of expertise is front end development (client side of the web).</p>
             <p>HTML, CSS, JS, building small and medium web applications with Vue or React, custom plugins, features, animations, and coding interactive layouts. I have also full-stack developer experience with one of the most popular open source CMS on the web - WordPress</p>
             <p>Visit my Linkedin for more details.</p>
-            <div className={styles['skills__container']}>
+            <div className='skills__container'>
                 {skills.map((s, i) =>
                     <FadeInWhenVisible delay={.1 * i}>
-                        <div className={styles['skills__skill']}>
+                        <div className='skills__skill'>
                             {s.icon}
                             {s.name}
                         </div>
