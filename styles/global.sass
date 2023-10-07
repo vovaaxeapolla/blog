@@ -5,7 +5,7 @@
 
 @font-face
     font-family: bebas
-    src: url(../public/fonts/bebas.ttf)
+    src: url(/fonts/bebas.ttf)
 
 button
     background: transparent
@@ -43,7 +43,7 @@ body
 
     &::-webkit-scrollbar
         width: 8px
-        background: #F1F1F1
+        background: var(--additional-color)
 
     &::-webkit-scrollbar-thumb
         border-radius: 4px
@@ -64,8 +64,9 @@ canvas
     background: var(--white-text)
     filter: blur(40px) contrast(500%)
 
-@import "Post.sass"
 @import "Title.sass"
 @import "About.sass"
 @import "../pages/blog/Blog.sass"
 @import "Skills.sass"
+@import "Home.sass"
+@import "Start.sass"

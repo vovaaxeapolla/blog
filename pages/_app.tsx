@@ -5,6 +5,7 @@ import '../styles/global.sass';
 import { AnimatePresence, motion } from "framer-motion";
 import TilesTransition from "../components/TilesTransition";
 import Background from "../components/Background";
+import { Router } from "next/router";
 
 type Theme = "light" | "dark";
 type ThemeContext = { theme: Theme; toggleTheme: () => void };
@@ -28,6 +29,20 @@ export default function App({ Component, pageProps, router }: AppProps) {
         document.documentElement.setAttribute('theme', theme);
         document.documentElement.setAttribute('style', `--vh: ${innerHeight / 100}px;`)
     }, []);
+
+    const routeChange = () => {
+
+        const tempFix = () => {
+            const allStyleElems = document.querySelectorAll('style[media="x"]');
+            allStyleElems.forEach((elem) => {
+                elem.removeAttribute("media");
+            });
+        };
+        tempFix();
+    };
+
+    Router.events.on("routeChangeComplete", routeChange);
+    Router.events.on("routeChangeStart", routeChange);
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

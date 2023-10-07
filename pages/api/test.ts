@@ -9,7 +9,5 @@ export default async function test(
     req: NextApiRequest,
     res: NextApiResponse<ResponseData>
 ) {
-    const { rows } = await sql`SELECT * FROM posts`;
-    console.log(rows);
-    res.status(200).json({ message: JSON.stringify(rows) })
+    res.status(200).json({ message: 'next js api' })
 }

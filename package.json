@@ -14,10 +14,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint",
+    "export": "next export"
   },
   "devDependencies": {
+    "@types/express": "^4.17.18",
     "@types/react": "^18.2.21"
   }
 }

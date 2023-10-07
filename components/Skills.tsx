@@ -8,7 +8,7 @@ const skills = [
         name: 'React'
     },
     {
-        icon: <svg viewBox="0 0 50 50"><path fill-rule="evenodd" d="M 42 6 L 39 40 L 25 44 L 11 40 L 8 6 Z M 16.800781 28 L 20.800781 28 L 20.898438 30.5 L 25 31.898438 L 29.101563 30.5 L 29.398438 26 L 20.601563 26 L 20.398438 22 L 29.601563 22 L 29.898438 18 L 16.101563 18 L 15.800781 14 L 34.101563 14 L 33.601563 22 L 32.898438 33.5 L 25 36.101563 L 17.101563 33.5 Z" /></svg>,
+        icon: <svg viewBox="0 0 50 50"><path fillRule="evenodd" d="M 42 6 L 39 40 L 25 44 L 11 40 L 8 6 Z M 16.800781 28 L 20.800781 28 L 20.898438 30.5 L 25 31.898438 L 29.101563 30.5 L 29.398438 26 L 20.601563 26 L 20.398438 22 L 29.601563 22 L 29.898438 18 L 16.101563 18 L 15.800781 14 L 34.101563 14 L 33.601563 22 L 32.898438 33.5 L 25 36.101563 L 17.101563 33.5 Z" /></svg>,
         name: 'CSS3'
     },
     {
@@ -55,7 +55,7 @@ export default function Skills() {
             <p>Visit my Linkedin for more details.</p>
             <div className='skills__container'>
                 {skills.map((s, i) =>
-                    <FadeInWhenVisible delay={.1 * i}>
+                    <FadeInWhenVisible delay={.1 * i} key={i}>
                         <div className='skills__skill'>
                             {s.icon}
                             {s.name}
