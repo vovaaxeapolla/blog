@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import styles from '../styles/Header.module.sass';
 import { usePathname } from 'next/navigation';
 import { ThemeContext } from '../pages/_app';
 import { useContext } from 'react';
+import classNames from 'classnames';
+import styles from '../styles/Header.module.sass';
+
 const links = [
     {
         url: '/',
@@ -39,15 +41,24 @@ export default function Header() {
                         scroll={false}
                         key={l.url}
                         href={l.url}
-                        className={path === l.url ? styles.link + ' ' + styles.active : styles.link}>
+                        className={classNames(styles['header__link'],
+                            { [styles['header__link-active']]: l.url === path })}>
                         {l.title}
                     </Link>)}
             </nav>
-            <div>
+            <div className={styles['header__theme']}>
                 <button onClick={toggleTheme}>
                     {theme}
                 </button>
             </div>
-        </header>
+            <div className={styles['header__auth']}>
+                <button>
+                    Sign up
+                </button>
+                <button>
+                    Sign in
+                </button>
+            </div>
+        </header >
     );
 }
