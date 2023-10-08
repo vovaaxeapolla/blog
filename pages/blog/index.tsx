@@ -1,8 +1,21 @@
-
+import { QueryResultRow, sql } from "@vercel/postgres";
+import { useEffect, useState } from 'react';
 import Post from '../../components/Post';
 import Head from 'next/head';
 
+async function get() {
+    const { rows } = await sql`SELECT * FROM posts`;
+    return rows;
+}
+
 export default function Blog() {
+
+    const [posts, setPosts] = useState<QueryResultRow[]>([])
+
+    useEffect(() => {
+        get().then(rows => setPosts(rows));
+    })
+
     return (
         <div className='blog'>
             <Head>
@@ -11,13 +24,7 @@ export default function Blog() {
                 <meta name="author" content="Vladimir Fadeev" />
                 <meta name="keywords" content="Blog, Portfolio, Home"></meta>
             </Head>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post>
+            {posts.map(p => <Post title={p.title} text={p.text} />)}
         </div>
     )
 }

@@ -48,7 +48,7 @@ export default function Header() {
             </nav>
             <div className={styles['header__theme']}>
                 <button onClick={toggleTheme}>
-                    {theme}
+                    {theme === 'light' ? '☀️' : '🌙'}
                 </button>
             </div>
             <div className={styles['header__auth']}>
