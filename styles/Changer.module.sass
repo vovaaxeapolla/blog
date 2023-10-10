@@ -1,0 +1,27 @@
+.changer
+    width: 100%
+    height: 4rem
+    border-radius: 2rem
+    border: 2px solid var(--accent-color)
+    display: flex
+    align-items: center
+    position: relative
+
+    &__button
+        width: 100%
+        height: 100%
+        font: 2rem bebas
+        position: relative
+        z-index: 1
+        color: var(--main-color)
+        transition: .2s
+
+        &-active
+            color: var(--additional-color)
+
+    &__highlight
+        border-radius: 2rem
+        height: 100%
+        background: var(--accent-color)
+        position: absolute
+        transition: .2s

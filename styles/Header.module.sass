@@ -10,6 +10,7 @@
     backdrop-filter: blur(10px)
     box-shadow: 0 0 4px 4px #00000011
     transition: background .2s,
+    height: var(--header-height)
 
     h1
         position: absolute
@@ -17,49 +18,16 @@
         color: var(--main-color)
         transition: color .2s
 
-    nav
-        display: flex
-        align-items: center
-        justify-content: center
-        padding: .5rem
+        span:nth-child(1)
+            display: block
 
-    &__link
-        display: block
-        position: relative
-        text-align: center
-        border-radius: .5rem
-        padding: .5rem 1rem
-        font-size: 1.25rem
-        transition: .2s
-        color: var(--main-color)
-        transition: color .2s background .2s
+        span:nth-child(2)
+            display: none
 
-        &:hover
-            background: rgba(0,0,0,.1)
+    @media (width <= 768px)
+        h1
+            span:nth-child(1)
+                display: none
 
-            &:first-child
-                border-radius: 3rem 1rem 1rem 3rem
-
-            &:last-child
-                border-radius: 1rem 3rem 3rem 1rem
-
-        &-active
-            color: var(--accent-color)
-
-    &__theme
-
-    &__auth
-        position: absolute
-        right: var(--page-padding)
-        transition: color .2s
-
-        button
-            color: var(--main-color)
-            font: 1.5rem bebas
-            padding: 0 .5rem
-
-            &:nth-child(2)
-                border: 2px solid var(--main-color)
-                border-radius: .5rem
-                margin-left: 1rem
-
+            span:nth-child(2)
+                display: block

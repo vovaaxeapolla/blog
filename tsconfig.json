@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     "server.js"
-  ],
+, "next.config.js", "routes/api.js"  ],
   "exclude": [
     "node_modules"
   ]

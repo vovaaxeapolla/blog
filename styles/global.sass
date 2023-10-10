@@ -14,6 +14,11 @@
 button
     background: transparent
     border: none
+    cursor: pointer
+    font: inherit
+
+input
+    border: none
 
 a
     color: inherit
@@ -23,8 +28,9 @@ a
     --header-height: 60px
     --header-padding: 1rem
     --page-padding-top: calc( var(--header-height) + var(--header-padding) * 2 )
-    --page-padding: 20vmin
-
+    --page-padding: 10vw
+    --overlay-color: #00000066
+    
 [theme='dark']:root
     --main-color: #f1f1f1
     --main-color-transparent: #f1f1f177
@@ -67,8 +73,3 @@ canvas
     z-index: 0
     background: var(--white-text)
     filter: blur(40px) contrast(500%)
-
-@import "Title.sass"
-@import "../pages/blog/Blog.sass"
-@import "Skills.sass"
-@import "Home.sass"

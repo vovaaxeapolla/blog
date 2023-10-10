@@ -1,30 +1,32 @@
-import { QueryResultRow, sql } from "@vercel/postgres";
-import { useEffect, useState } from 'react';
-import Post from '../../components/Post';
 import Head from 'next/head';
+import Post from '../../components/Post';
+import styles from './Blog.module.sass';
 
-async function get() {
-    const { rows } = await sql`SELECT * FROM posts`;
-    return rows;
+type Post = {
+    id: string
+    title: string
+    text: string
 }
 
-export default function Blog() {
+export const getStaticProps = (async () => {
+    const res = await fetch('http://localhost:3000/api/posts')
+    const posts = await res.json() as Post[];
+    return { props: { posts } }
+})
 
-    const [posts, setPosts] = useState<QueryResultRow[]>([])
+export default function Blog({ posts }: { posts: [] }) {
 
-    useEffect(() => {
-        get().then(rows => setPosts(rows));
-    })
+    console.log(posts);
 
     return (
-        <div className='blog'>
+        <div className={styles.blog}>
             <Head>
                 <title>Blog - Vladimir Fadeev</title>
                 <meta name="description" content="Blog by Vladimir Fadeev" />
                 <meta name="author" content="Vladimir Fadeev" />
                 <meta name="keywords" content="Blog, Portfolio, Home"></meta>
             </Head>
-            {posts.map(p => <Post title={p.title} text={p.text} />)}
+            {posts.map((p: Post) => <Post key={p.id} title={p.title} text={p.text} />)}
         </div>
     )
 }

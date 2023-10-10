@@ -1,0 +1,54 @@
+.FormInput
+    position: relative
+    width: 100%
+    height: 3.25rem
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    font-size: 1rem
+    background: var(--bg)
+    border-bottom: 1px solid var(--main-color)
+    color: var(--text-color)
+    margin: .5rem 0
+
+    &__error
+        position: absolute
+        pointer-events: none
+        bottom: -1rem
+        color: var(--error)
+        z-index: 10
+        font-size: .75rem
+        transition: .2s
+
+    input
+        width: 100%
+        height: 3rem
+        border: none
+        outline: none
+        font-size: 1.5rem
+        background: transparent
+        color: var(--text-color)
+        background-clip: content-box
+
+        &::placeholder
+            opacity: 0
+    input:-webkit-autofill
+        -webkit-text-fill-color: var(--text-color)
+
+    input:not(:placeholder-shown) + &__placeholder,
+    input:focus + &__placeholder,
+    input:-webkit-autofill + &__placeholder
+        bottom: 2rem
+        color: grey
+        font-size: 1rem
+
+    &__placeholder
+        position: absolute
+        transition: .2s
+
+        &
+            line-height: 1.5rem
+            bottom: 0.25rem
+            font-size: 1.5rem
+            left: .25rem
+            pointer-events: none
