@@ -8,16 +8,13 @@ type Post = {
     text: string
 }
 
-export const getStaticProps = (async () => {
-    const res = await fetch('http://localhost:3000/api/posts')
+export const getServerSideProps = (async () => {
+    const res = await fetch(process.env.API_HOST + '/posts')
     const posts = await res.json() as Post[];
     return { props: { posts } }
 })
 
 export default function Blog({ posts }: { posts: [] }) {
-
-    console.log(posts);
-
     return (
         <div className={styles.blog}>
             <Head>
