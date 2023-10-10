@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Post from '../../components/Post';
 import styles from './Blog.module.sass';
+import { useEffect, useState } from 'react';
 
 type Post = {
     id: string
@@ -8,13 +9,18 @@ type Post = {
     text: string
 }
 
-export const getServerSideProps = (async () => {
-    const res = await fetch(process.env.API_HOST + '/posts')
-    const posts = await res.json() as Post[];
-    return { props: { posts } }
-})
+export default function Blog() {
 
-export default function Blog({ posts }: { posts: [] }) {
+    const [posts, setPosts] = useState<Post[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const res = await fetch('/api/posts')
+            const posts = await res.json() as Post[];
+            setPosts(posts);
+        })()
+    }, [])
+
     return (
         <div className={styles.blog}>
             <Head>
