@@ -8,6 +8,8 @@ import Background from "../components/Background";
 import { useNextCssRemovalPrevention } from "../hooks/useNextCssRemovalPrevention";
 import useVhFix from "../hooks/useVh";
 import ProgressBar from "../components/ProgressBar";
+import Portfolio from "./portfolio/index";
+import Blog from "./blog/index";
 
 type Theme = "light" | "dark";
 type ThemeContext = { theme: Theme; toggleTheme: () => void };
@@ -16,7 +18,7 @@ export const ThemeContext = createContext<ThemeContext>({} as ThemeContext);
 
 export default function App({ Component, pageProps, router }: AppProps) {
 
-    useNextCssRemovalPrevention();
+    // useNextCssRemovalPrevention();
     useVhFix();
 
     const [theme, setTheme] = useState<Theme>('light');
@@ -43,7 +45,10 @@ export default function App({ Component, pageProps, router }: AppProps) {
                     transition={{ duration: .4 }}
                     className="wrapper"
                 >
-                    <Component {...pageProps} key={router.pathname} />
+                    <div className="wrapper">
+                        <Component {...pageProps} key={router.pathname} />
+                    </div>
+
                     <TilesTransition TilesNumber={20} />
                 </motion.div>
             </AnimatePresence>
