@@ -7,6 +7,7 @@ import TilesTransition from "../components/TilesTransition";
 import Background from "../components/Background";
 import useVhFix from "../hooks/useVh";
 import ProgressBar from "../components/ProgressBar";
+import { mapsAreEqual } from "../helpers/mapsAreEqual";
 
 type Theme = "light" | "dark";
 type ThemeContext = { theme: Theme; toggleTheme: () => void };
@@ -19,19 +20,22 @@ export default function App({ Component, pageProps, router }: AppProps) {
         const observer = new MutationObserver(mutationHandler);
         observer.observe(document.head, { childList: true, subtree: true });
 
+        let stylesMap: Map<string, Node> = new Map();
+
         function mutationHandler() {
-
+            const stylesNew: Map<string, Node> = new Map();
             const styles = document.querySelectorAll('head > [data-n-href]');
-
-            const stylesHash: Map<string, Node> = new Map();
 
             [...styles].forEach(s => {
                 const clone = s.cloneNode(true) as Element;
                 clone.removeAttribute('media');
-                stylesHash.set(s.getAttribute('href') || '', clone)
+                stylesNew.set(s.getAttribute('href') || '', clone)
             });
 
-            document.head.append(...stylesHash.values());
+            if (!mapsAreEqual){
+                stylesMap = stylesNew;
+                document.head.append(...stylesMap.values());
+            }
         }
 
         return () => {
