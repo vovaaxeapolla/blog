@@ -32,7 +32,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
                 stylesNew.set(s.getAttribute('href') || '', clone)
             });
 
-            if (!mapsAreEqual){
+            if (!mapsAreEqual(stylesMap, stylesNew)){
                 stylesMap = stylesNew;
                 document.head.append(...stylesMap.values());
             }
