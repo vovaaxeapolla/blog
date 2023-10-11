@@ -1,7 +1,8 @@
 import { useForm, Controller } from "react-hook-form";
 import FormInput from "../FormInput";
 import styles from "./Form.module.sass";
-
+import axios from "axios";
+import UserStore from "../../stores/UserStore";
 
 type SignUpInputs = {
     email: string
@@ -11,8 +12,13 @@ type SignUpInputs = {
 
 export default function SignUp() {
 
-    const { control, handleSubmit } = useForm<SignUpInputs>()
-    const onSubmit = (data: SignUpInputs) => console.log(data)
+    const { control, handleSubmit } = useForm<SignUpInputs>();
+
+    const onSubmit = async (data: SignUpInputs) => {
+        const result = await axios.post('/api/auth/signup', data, { withCredentials: true });
+        const user = result.data;
+        UserStore.user = user;
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

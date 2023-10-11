@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import Post from '../../components/Post';
 import styles from './Blog.module.sass';
-import mysql from 'mysql2';
-import { promisify } from 'util';
+import mysql, { RowDataPacket } from 'mysql2/promise';
+import pool from '../../utils/db';
 
-type Post = {
+interface Post extends RowDataPacket {
     id: string
     title: string
     text: string
@@ -12,14 +12,7 @@ type Post = {
 
 export const getServerSideProps = (async () => {
     try {
-        const connection = mysql.createConnection({
-            host: process.env.MYSQL_HOST,
-            user: process.env.MYSQL_USER,
-            database: process.env.MYSQL_DATABASE,
-            password: process.env.MYSQL_PASSWORD
-        });
-        const query = promisify(connection.query).bind(connection);
-        const posts = await query('SELECT * FROM posts');
+        const posts = (await pool.query<Post[]>('SELECT * FROM posts'))[0];
         return { props: { posts } }
     } catch (error) {
         console.log('Упала база данных');

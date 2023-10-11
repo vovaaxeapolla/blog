@@ -71,6 +71,11 @@ export default function Menu() {
                     className={styles['menu__link']}>
                     Account
                 </button>
+                <button
+                    onClick={() => fetch('/api/auth/logout')}
+                    className={styles['menu__link']}>
+                    Log Out
+                </button>
                 <AnimatePresence
                     initial={true}
                     mode="wait"

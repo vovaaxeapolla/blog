@@ -2,8 +2,6 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.sass';
 import Menu from './Menu';
 
-
-
 export default function Header() {
 
     return (
