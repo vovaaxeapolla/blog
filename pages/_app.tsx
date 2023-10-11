@@ -16,16 +16,27 @@ export const ThemeContext = createContext<ThemeContext>({} as ThemeContext);
 export default function App({ Component, pageProps, router }: AppProps) {
 
     useEffect(() => {
-        const styles = document.querySelectorAll('head > [data-n-href]');
-        const stylesHash: Map<string, Node> = new Map();
-        [...styles].forEach(s => {
-            const clone = s.cloneNode(true) as Element;
-            clone.removeAttribute('media');
-            stylesHash.set(s.getAttribute('href') || '', clone)
-        }
-        );
+        const observer = new MutationObserver(mutationHandler);
+        observer.observe(document.head, { childList: true, subtree: true });
 
-        document.head.append(...stylesHash.values());
+        function mutationHandler() {
+
+            const styles = document.querySelectorAll('head > [data-n-href]');
+
+            const stylesHash: Map<string, Node> = new Map();
+
+            [...styles].forEach(s => {
+                const clone = s.cloneNode(true) as Element;
+                clone.removeAttribute('media');
+                stylesHash.set(s.getAttribute('href') || '', clone)
+            });
+
+            document.head.append(...stylesHash.values());
+        }
+
+        return () => {
+            observer.disconnect();
+        };
     }, [])
 
     useVhFix();
