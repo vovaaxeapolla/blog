@@ -8,6 +8,7 @@ import Background from "../components/Background";
 import { useNextCssRemovalPrevention } from "../hooks/useNextCssRemovalPrevention";
 import useVhFix from "../hooks/useVh";
 import ProgressBar from "../components/ProgressBar";
+import useCssFix from "../hooks/useCssFix";
 
 type Theme = "light" | "dark";
 type ThemeContext = { theme: Theme; toggleTheme: () => void };
@@ -16,7 +17,7 @@ export const ThemeContext = createContext<ThemeContext>({} as ThemeContext);
 
 export default function App({ Component, pageProps, router }: AppProps) {
 
-    // useNextCssRemovalPrevention();
+    useCssFix(.4);
     useVhFix();
 
     const [theme, setTheme] = useState<Theme>('light');
