@@ -20,7 +20,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
     useEffect(() => {
         const styles = document.querySelectorAll('head > [data-n-href]');
-        [...styles].forEach(s => s.removeAttribute('media'));
+        const stylesHash: Node[] = [];
+        [...styles].forEach(s => stylesHash.push(s.cloneNode(true)));
+        document.head.append(...stylesHash);
     })
 
     useVhFix();
