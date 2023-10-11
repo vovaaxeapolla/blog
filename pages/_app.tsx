@@ -5,7 +5,6 @@ import '../styles/global.sass';
 import { AnimatePresence, motion } from "framer-motion";
 import TilesTransition from "../components/TilesTransition";
 import Background from "../components/Background";
-import { useNextCssRemovalPrevention } from "../hooks/useNextCssRemovalPrevention";
 import useVhFix from "../hooks/useVh";
 import ProgressBar from "../components/ProgressBar";
 
@@ -16,14 +15,18 @@ export const ThemeContext = createContext<ThemeContext>({} as ThemeContext);
 
 export default function App({ Component, pageProps, router }: AppProps) {
 
-    // useNextCssRemovalPrevention();
-
     useEffect(() => {
         const styles = document.querySelectorAll('head > [data-n-href]');
-        const stylesHash: Node[] = [];
-        [...styles].forEach(s => stylesHash.push(s.cloneNode(true)));
-        document.head.append(...stylesHash);
-    })
+        const stylesHash: Map<string, Node> = new Map();
+        [...styles].forEach(s => {
+            const clone = s.cloneNode(true) as Element;
+            clone.removeAttribute('media');
+            stylesHash.set(s.getAttribute('href') || '', clone)
+        }
+        );
+
+        document.head.append(...stylesHash.values());
+    }, [])
 
     useVhFix();
 
