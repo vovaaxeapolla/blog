@@ -12,15 +12,10 @@ export default function ProgressBar() {
         function start() {
             setProgress(1);
             increment();
-
-            console.log('start')
-
         }
 
         function increment() {
             const timeout = Math.round(Math.random() * 300);
-
-            console.log('increment ' + timer)
 
             setProgress((progress) => {
 
@@ -32,7 +27,6 @@ export default function ProgressBar() {
 
                 if (next < 80) {
                     timer = setTimeout(increment, timeout);
-                    console.log("timer " + timer)
                     return next;
                 }
 
@@ -41,7 +35,6 @@ export default function ProgressBar() {
         }
 
         function complete() {
-            console.log('complete ' + timer)
             clearTimeout(timer);
             setProgress(100);
         }

@@ -17,7 +17,7 @@ export default async function middleware(req: NextRequest, res: NextResponse) {
 
             const token = req.cookies.get('ACCESS_TOKEN');
             if (!(token && jwt.verify(token.value, process.env.ACCESS_TOKEN as jwt.Secret)))
-                return NextResponse.redirect(new URL('/', req.url))
+                return NextResponse.redirect(new URL('/blog', req.url))
 
             const response = NextResponse.next();
 

@@ -16,7 +16,7 @@ export const ThemeContext = createContext<ThemeContext>({} as ThemeContext);
 
 export default function App({ Component, pageProps, router }: AppProps) {
 
-    useNextCssRemovalPrevention();
+    // useNextCssRemovalPrevention();
     useVhFix();
 
     const [theme, setTheme] = useState<Theme>('light');
